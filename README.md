@@ -38,7 +38,7 @@ This project is a simple web application that allows users to search for periodi
 
 ## Example
 
-![Screenshot of the Application](screenshot.png)  <!-- Replace with a screenshot of your application -->
+![Screenshot of the Application](https://ibb.co/cgb9WCM)  <!-- Replace with a screenshot of your application -->
 
 ## Contributing
 
