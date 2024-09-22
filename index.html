@@ -7,6 +7,63 @@
   <link href="https://fonts.cdnfonts.com/css/heart-breaking-bad" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+  <style>
+
+    /* Hover effect for symbol-box */
+.symbol-box:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* Modal styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.7); /* Black with opacity */
+}
+
+.modal-content {
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#modalDetails {
+  text-align: center;
+}
+
+#modalDetails h2 {
+  font-size: 2rem;
+}
+
+#modalDetails p {
+  font-size: 1.2rem;
+}
+
+  </style>
 <body>
   <div class="background"></div>
   <div class="content">
@@ -16,6 +73,14 @@
     <div class="result-container" id="output"></div>
     <button class="fullscreen" onclick="toggleFullscreen()">Toggle Fullscreen</button>
   </div>
+  <!-- Pop-up Modal -->
+<div id="elementModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="modalDetails"></div>
+  </div>
+</div>
+
   <script src="script.js">
   
   </script>
