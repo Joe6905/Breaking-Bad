@@ -236,7 +236,82 @@ button:hover {
   </div>
 </div>
 
-  <script src="script.js">
+  <script >
+
+    const elements = {
+  H: { symbol: "H", number: 1, name: "Hydrogen", type: "Non-metal", article: "Hydrogen is the lightest element...", physicalState: "Gas" },
+  He: { symbol: "He", number: 2, name: "Helium", type: "Noble Gas", article: "Helium is used in balloons...", physicalState: "Gas" },
+  // Add more elements here with type, article, and physicalState...
+};
+
+function searchElements() {
+  const input = document.getElementById("inputText").value.toLowerCase();
+  let resultHTML = '';
+  let i = 0;
+
+  while (i < input.length) {
+    if (i + 1 < input.length) {
+      const twoChars = input[i].toUpperCase() + input[i + 1];
+      if (elements[twoChars]) {
+        resultHTML += `
+          <div class="symbol-box" onclick="showElementDetails('${twoChars}')">
+            <div class="atomic-number">${elements[twoChars].number}</div>
+            <div class="element-symbol">${twoChars}</div>
+            <div class="element-name">${elements[twoChars].name}</div>
+          </div>`;
+        i += 2;
+        continue;
+      }
+    }
+
+    const oneChar = input[i].toUpperCase();
+    if (elements[oneChar]) {
+      resultHTML += `
+          <div class="symbol-box" onclick="showElementDetails('${oneChar}')">
+            <div class="atomic-number">${elements[oneChar].number}</div>
+            <div class="element-symbol">${oneChar}</div>
+            <div class="element-name">${elements[oneChar].name}</div>
+          </div>`;
+    } else {
+      resultHTML += `<span class="normal-text">${input[i]}</span>`;
+    }
+    i++;
+  }
+
+  document.getElementById("output").innerHTML = resultHTML;
+}
+
+function showElementDetails(symbol) {
+  const element = elements[symbol];
+  const modal = document.getElementById("elementModal");
+  const modalDetails = document.getElementById("modalDetails");
+
+  // Fill the modal with the element's details
+  modalDetails.innerHTML = `
+    <h2>${element.name} (${element.symbol})</h2>
+    <p><strong>Atomic Number:</strong> ${element.number}</p>
+    <p><strong>Type:</strong> ${element.type}</p>
+    <p><strong>Physical State:</strong> ${element.physicalState}</p>
+    <p><strong>About:</strong> ${element.article}</p>
+  `;
+
+  modal.style.display = "block"; // Show the modal
+}
+
+// Close modal when the user clicks on <span> (x)
+document.querySelector(".close").onclick = function () {
+  document.getElementById("elementModal").style.display = "none";
+};
+
+// Close modal when the user clicks outside the modal content
+window.onclick = function (event) {
+  const modal = document.getElementById("elementModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+  </script>
   
   </script>
 </body>
