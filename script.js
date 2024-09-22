@@ -131,27 +131,48 @@ const elements = {
   Ts: { symbol: "Ts", number: 117, name: "Tennessine" },
   Og: { symbol: "Og", number: 118, name: "Oganesson" }
 };
+  function searchElements() {
+      const input = document.getElementById("inputText").value.toLowerCase();
+      let resultHTML = '';
+      let i = 0;
 
-function searchElements() {
-  const inputText = document.getElementById("inputText").value.toLowerCase();
-  const outputDiv = document.getElementById("output");
-  outputDiv.innerHTML = ""; // Clear previous results
+      while (i < input.length) {
+        // Try to match two characters (for elements like Ba, Fe)
+        if (i + 1 < input.length) {
+          const twoChars = input[i].toUpperCase() + input[i + 1];
+          if (elements[twoChars]) {
+            resultHTML += `
+              <div class="symbol-box">
+                <div class="atomic-number">${elements[twoChars].number}</div>
+                <div class="element-symbol">${twoChars}</div>
+                <div class="element-name">${elements[twoChars].name}</div>
+              </div>`;
+            i += 2;
+            continue;
+          }
+        }
+        // Try to match one character (for elements like H, C)
+        const oneChar = input[i].toUpperCase();
+        if (elements[oneChar]) {
+          resultHTML += `
+              <div class="symbol-box">
+                <div class="atomic-number">${elements[oneChar].number}</div>
+                <div class="element-symbol">${oneChar}</div>
+                <div class="element-name">${elements[oneChar].name}</div>
+              </div>`;
+        } else {
+          resultHTML += `<span class="normal-text">${input[i]}</span>`;
+        }
+        i++; // Move to the next character
+      }
 
-  const matchingElements = Object.entries(elements).filter(([key]) => key.toLowerCase().includes(inputText));
-
-  if (matchingElements.length === 0) {
-    outputDiv.innerHTML = "<p>No matching elements found.</p>";
-    return;
+      // Display the result in the output container
+      document.getElementById("output").innerHTML = resultHTML;
+    } 
+document.getElementById("inputText").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    searchElements();
   }
+});
 
-  matchingElements.forEach(([key, element]) => {
-    const elementDiv = document.createElement("div");
-    elementDiv.className = "symbol-box";
-    elementDiv.innerHTML = `
-      <div class="normal-text">${element.number}</div>
-      <div class="element-symbol">${element.symbol}</div>
-      <div class="element-name">${element.name}</div>
-    `;
-    outputDiv.appendChild(elementDiv);
-  });
-}
+
