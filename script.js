@@ -118,16 +118,9 @@ const elements = {
   Ts: { symbol: "Ts", number: 117, name: "Tennessine", weight: 294, state: "Solid", type: "Halogen" },
   Og: { symbol: "Og", number: 118, name: "Oganesson", weight: 294, state: "Gas", type: "Noble gas" },
 };
-document.getElementById('elementInput').addEventListener('keypress', function(event) {
+document.getElementById('inputText').addEventListener('keydown', function(event) {
   if (event.key === 'Enter') {
-    const input = event.target.value.trim().toUpperCase();
-    const element = elements[input];
-
-    if (element) {
-      displayElementInfo(element);
-    } else {
-      document.getElementById('elementResult').innerText = "Element not found!";
-    }
+    searchElements();  // Trigger the button click
   }
 });
 
