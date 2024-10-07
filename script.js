@@ -192,3 +192,11 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+let index = 0;
+
+window.onclick = function () {
+  index++;
+  console.log("Current Index:", index);
+  // You can add any logic here that will execute when the index changes
+};
+
