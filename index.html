@@ -223,7 +223,7 @@ document.querySelector(".close").onclick = function () {
 // Close modal when the user clicks outside the modal content
 window.onclick = function (event) {
   const modal = document.getElementById("elementModal");
-  if (event.target == modal) {
+  if (event.target.id === "elementModal") {
     modal.style.display = "none";
   }
 };
