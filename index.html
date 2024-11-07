@@ -16,8 +16,47 @@
     <div class="result-container" id="output"></div>
     <button class="fullscreen" onclick="toggleFullscreen()">Toggle Fullscreen</button>
   </div>
-  <script src="script.js">
-  
+  <script>
+    const elements = {
+      H: { symbol: "H", number: 1, name: "Hydrogen", weight: 1.008, state: "Gas", type: "Non-metal" },
+      He: { symbol: "He", number: 2, name: "Helium", weight: 4.0026, state: "Gas", type: "Noble gas" },
+      // Add remaining elements here...
+    };
+
+    function searchElements() {
+      const inputText = document.getElementById("inputText").value.toLowerCase();
+      const output = document.getElementById("output");
+      output.innerHTML = ""; // Clear previous results
+
+      const results = Object.values(elements).filter(element =>
+        element.name.toLowerCase().includes(inputText)
+      );
+
+      if (results.length > 0) {
+        results.forEach(element => {
+          const elementDiv = document.createElement("div");
+          elementDiv.classList.add("element-card");
+          elementDiv.innerHTML = `
+            <h2>${element.name} (${element.symbol})</h2>
+            <p>Atomic Number: ${element.number}</p>
+            <p>Atomic Weight: ${element.weight}</p>
+            <p>State: ${element.state}</p>
+            <p>Type: ${element.type}</p>
+          `;
+          output.appendChild(elementDiv);
+        });
+      } else {
+        output.innerHTML = "<p>No elements found.</p>";
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
   </script>
 </body>
 </html>
