@@ -1,7 +1,7 @@
 function toggleFullscreen() {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen().catch(err => {
-      console.log(Error attempting to enable fullscreen mode: ${err.message} (${err.name}));
+      console.log(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
     });
   } else {
     if (document.exitFullscreen) {
@@ -143,12 +143,12 @@ function toggleFullscreen() {
         if (i + 1 < input.length) {
           const twoChars = input[i].toUpperCase() + input[i + 1];
           if (elements[twoChars]) {
-            resultHTML += 
+            resultHTML += `
               <div class="symbol-box">
                 <div class="atomic-number">${elements[twoChars].number}</div>
                 <div class="element-symbol">${twoChars}</div>
                 <div class="element-name">${elements[twoChars].name}</div>
-              </div>;
+              </div>`;
             i += 2;
             continue;
           }
@@ -156,14 +156,14 @@ function toggleFullscreen() {
         // Try to match one character (for elements like H, C)
         const oneChar = input[i].toUpperCase();
         if (elements[oneChar]) {
-          resultHTML += 
+          resultHTML += `
               <div class="symbol-box">
                 <div class="atomic-number">${elements[oneChar].number}</div>
                 <div class="element-symbol">${oneChar}</div>
                 <div class="element-name">${elements[oneChar].name}</div>
-              </div>;
+              </div>`;
         } else {
-          resultHTML += <span class="normal-text">${input[i]}</span>;
+          resultHTML += `<span class="normal-text">${input[i]}</span>`;
         }
         i++; // Move to the next character
       }
