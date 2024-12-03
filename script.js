@@ -161,7 +161,9 @@ document.getElementById("inputText").addEventListener("keydown", function(event)
   if (event.key === "Enter") {
     searchElements();
   }
-   const elementsContainer = document.getElementById("elements-container");
+  
+});
+ const elementsContainer = document.getElementById("elements-container");
 
     elements.forEach(element => {
       const elementDiv = document.createElement("div");
@@ -193,5 +195,3 @@ document.getElementById("inputText").addEventListener("keydown", function(event)
       const popup = button.closest(".popup");
       popup.remove();
     }
-});
-
