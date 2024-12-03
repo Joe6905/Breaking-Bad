@@ -152,29 +152,6 @@ function toggleFullscreen() {
         }
         i++; // Move to the next character
       }
-        function showPopup(element) {
-  // Create popup container
-  const popup = document.createElement("div");
-  popup.classList.add("popup");
-
-  // Add content to popup
-  popup.innerHTML = `
-    <div class="popup-content">
-      <span class="close-button" onclick="closePopup(this)">&times;</span>
-      <h2>${element.name} (${element.symbol})</h2>
-      <p><strong>Atomic Number:</strong> ${element.number}</p>
-      <p>${element.description}</p>
-    </div>
-  `;
-
-  // Append popup to the body
-  document.body.appendChild(popup);
-}
-
-function closePopup(button) {
-  const popup = button.closest(".popup");
-  popup.remove();
-}
 
 
       // Display the result in the output container
@@ -184,5 +161,37 @@ document.getElementById("inputText").addEventListener("keydown", function(event)
   if (event.key === "Enter") {
     searchElements();
   }
+   const elementsContainer = document.getElementById("elements-container");
+
+    elements.forEach(element => {
+      const elementDiv = document.createElement("div");
+      elementDiv.classList.add("element");
+      elementDiv.textContent = element.symbol;
+      elementDiv.onclick = () => showPopup(element);
+      elementsContainer.appendChild(elementDiv);
+    });
+
+    // Show Popup
+    function showPopup(element) {
+      const popup = document.createElement("div");
+      popup.classList.add("popup");
+
+      popup.innerHTML = `
+        <div class="popup-content">
+          <span class="close-button" onclick="closePopup(this)">&times;</span>
+          <h2>${element.name} (${element.symbol})</h2>
+          <p><strong>Atomic Number:</strong> ${element.number}</p>
+          <p>${element.description}</p>
+        </div>
+      `;
+
+      document.body.appendChild(popup);
+    }
+
+    // Close Popup
+    function closePopup(button) {
+      const popup = button.closest(".popup");
+      popup.remove();
+    }
 });
 
