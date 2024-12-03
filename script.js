@@ -152,16 +152,7 @@ function toggleFullscreen() {
         }
         i++; // Move to the next character
       }
-
-      // Display the result in the output container
-      document.getElementById("output").innerHTML = resultHTML;
-    } 
-document.getElementById("inputText").addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    searchElements();
-  }
-});
-function showPopup(element) {
+        function showPopup(element) {
   // Create popup container
   const popup = document.createElement("div");
   popup.classList.add("popup");
@@ -184,4 +175,14 @@ function closePopup(button) {
   const popup = button.closest(".popup");
   popup.remove();
 }
+
+
+      // Display the result in the output container
+      document.getElementById("output").innerHTML = resultHTML;
+    } 
+document.getElementById("inputText").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    searchElements();
+  }
+});
 
